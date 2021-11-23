@@ -101,16 +101,19 @@ class ConnectFour():
         else:
             self.turn = 1
 
-    def click_play(self, x_pos, y_pos):
-        ''' a version where the user clicks on screen'''
-        row = int(abs((y_pos - self.__y_offset - 25) // (50) + 1))
-        col = int(abs((x_pos - self.__x_offset - 25) // (50) + 1))
-        print(row, col)
+    def player_move(self, row, col):
         if self.grid[row][col] == 0:
             if self.turn == 1:
                 self.grid[row][col] = 1
             else:
                 self.grid[row][col] = 2
+
+    def click_play(self, x_pos, y_pos):
+        ''' a version where the user clicks on screen'''
+        row = int(abs((y_pos - self.__y_offset - 25) // (50) + 1))
+        col = int(abs((x_pos - self.__x_offset - 25) // (50) + 1))
+        print(row, col)
+        self.player_move(row,col)
         self.prepare_next_turn()
 
 
@@ -121,6 +124,8 @@ class ConnectFour():
         while True:
             selected_row = int(input("enter row, player "+ str(self.turn) +": "))
             selected_col = int(input("enter col, player "+ str(self.turn) +": "))
+            self.player_move(selected_row, selected_col)
+            self.prepare_next_turn()
 
 
     def prepare_next_turn(self):
