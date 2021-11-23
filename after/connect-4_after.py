@@ -121,18 +121,16 @@ class ConnectFour():
         while True:
             selected_row = int(input("enter row, player "+ str(self.turn) +": "))
             selected_col = int(input("enter col, player "+ str(self.turn) +": "))
+            self.prepare_next_turn()
 
 
     def prepare_next_turn(self):
         self.draw_grid()
         self.window.update()
-
         if self.check_win(1):
             print("player 1 won")
-
         elif self.check_win(2):
             print("player 2 won")
-
         self.switch_turns()
 
 def main():
